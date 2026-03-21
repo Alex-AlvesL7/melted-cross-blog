@@ -8,20 +8,58 @@ import {
   Shield,
   Crosshair,
 } from 'lucide-react';
+import { isSupabaseConfigured, supabase } from './lib/supabase';
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle');
+  const [feedbackMessage, setFeedbackMessage] = useState('');
+
+  const openLeadModal = () => {
+    setIsModalOpen(true);
+    setStatus('idle');
+    setFeedbackMessage('');
+  };
+
+  const closeLeadModal = () => {
+    setIsModalOpen(false);
+  };
 
   const handleSubscribe = async (event) => {
     event.preventDefault();
     setStatus('loading');
+    setFeedbackMessage('');
 
-    window.setTimeout(() => {
-      setStatus('success');
-      setEmail('');
-    }, 1500);
+    if (!isSupabaseConfigured || !supabase) {
+      setStatus('error');
+      setFeedbackMessage('A captura de leads não está configurada no ambiente atual.');
+      return;
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+    const { error } = await supabase.from('leads').insert([
+      {
+        email: normalizedEmail,
+        origem: 'blog_hero',
+      },
+    ]);
+
+    if (error) {
+      if (error.code === '23505') {
+        setStatus('error');
+        setFeedbackMessage('Este e-mail já está cadastrado na lista VIP.');
+        return;
+      }
+
+      setStatus('error');
+      setFeedbackMessage('Não foi possível enviar o dossiê agora. Tente novamente em instantes.');
+      return;
+    }
+
+    setStatus('success');
+    setFeedbackMessage('Dossiê enviado! Verifique sua caixa de entrada (e o spam).');
+    setEmail('');
   };
 
   return (
@@ -39,7 +77,7 @@ export default function App() {
           </div>
           <button
             type="button"
-            onClick={() => setIsModalOpen(true)}
+            onClick={openLeadModal}
             className="rounded-sm bg-amber-800 px-4 py-2 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-amber-700"
           >
             Dossiê VIP
@@ -66,7 +104,7 @@ export default function App() {
 
           <button
             type="button"
-            onClick={() => setIsModalOpen(true)}
+            onClick={openLeadModal}
             className="group flex items-center gap-3 rounded-sm bg-amber-800 px-8 py-4 font-bold uppercase tracking-widest text-white shadow-[0_0_20px_rgba(180,83,9,0.3)] transition-all hover:-translate-y-1 hover:bg-amber-700 hover:shadow-[0_0_30px_rgba(180,83,9,0.5)]"
           >
             <BookOpen size={20} />
@@ -207,7 +245,7 @@ export default function App() {
           <div className="relative w-full max-w-md rounded-sm border border-neutral-800 bg-neutral-900 shadow-2xl">
             <button
               type="button"
-              onClick={() => setIsModalOpen(false)}
+              onClick={closeLeadModal}
               className="absolute top-4 right-4 text-neutral-500 transition-colors hover:text-white"
               aria-label="Fechar modal"
             >
@@ -228,16 +266,28 @@ export default function App() {
 
               {status === 'success' ? (
                 <div className="animate-in zoom-in-95 rounded border border-amber-800 bg-amber-900/20 p-4 text-center font-bold text-amber-500">
-                  Dossiê enviado! Verifique sua caixa de entrada (e o spam).
+                  {feedbackMessage}
                 </div>
               ) : (
                 <form onSubmit={handleSubscribe} className="flex flex-col gap-4">
+                  {status === 'error' && (
+                    <div className="rounded border border-red-900/60 bg-red-950/40 p-3 text-center text-sm font-medium text-red-300">
+                      {feedbackMessage}
+                    </div>
+                  )}
                   <div>
                     <input
                       type="email"
                       required
                       value={email}
-                      onChange={(event) => setEmail(event.target.value)}
+                      onChange={(event) => {
+                        setEmail(event.target.value);
+
+                        if (status === 'error') {
+                          setStatus('idle');
+                          setFeedbackMessage('');
+                        }
+                      }}
                       placeholder="seu.email@exemplo.com"
                       className="w-full border border-neutral-800 bg-neutral-950 px-4 py-3 text-white transition-colors focus:border-amber-700 focus:outline-none"
                       disabled={status === 'loading'}
