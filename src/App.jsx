@@ -11,6 +11,84 @@ import {
 import { isSupabaseConfigured, supabase } from './lib/supabase';
 
 export default function App() {
+  const characters = [
+    {
+      name: 'Alec Ashford',
+      role: 'O estrategista',
+      description:
+        'Ex-sargento condecorado que transformou disciplina militar em uma máquina criminosa precisa e silenciosa.',
+    },
+    {
+      name: 'Nora Vale',
+      role: 'A informante',
+      description:
+        'Dona de um salão clandestino que reúne policiais, políticos e apostadores sob o mesmo teto esfumaçado.',
+    },
+    {
+      name: 'Hugh Mercer',
+      role: 'O cobrador',
+      description:
+        'Sobreviveu às trincheiras e agora cobra cada dívida como se ainda estivesse atravessando terra de ninguém.',
+    },
+  ];
+
+  const dossierBenefits = [
+    {
+      title: 'Capítulo 1 completo',
+      description: 'Receba a abertura do romance em PDF e entre no conflito antes do lançamento oficial.',
+    },
+    {
+      title: 'Dossiê Ashford',
+      description: 'Um material extra com contexto da gangue, território e motivações dos veteranos.',
+    },
+    {
+      title: 'Lista VIP de lançamento',
+      description: 'Seja avisado primeiro sobre pré-venda, novidades e conteúdo exclusivo do universo.',
+    },
+  ];
+
+  const intelligenceFiles = [
+    {
+      code: 'Arquivo #001',
+      tag: 'Ameaça urbana',
+      title: 'Pânico defensivo nas ruas de Manchester',
+      description:
+        'A polícia local teme homens que sobreviveram à Somme e agora tratam cada beco como uma trincheira.',
+    },
+    {
+      code: 'Arquivo #002',
+      tag: 'Território',
+      title: 'Docas, carvão, apostas e rotas de cobrança',
+      description:
+        'A Melted Cross avança sobre lugares que o império abandonou, onde a lei chega tarde e sangra cedo.',
+    },
+    {
+      code: 'Arquivo #003',
+      tag: 'Símbolo',
+      title: 'Medalhas derretidas viram armas e juramentos',
+      description:
+        'Cada lâmina forjada carrega a humilhação de homens descartados depois da guerra.',
+    },
+  ];
+
+  const faqItems = [
+    {
+      question: 'O que eu recebo ao entrar na lista?',
+      answer:
+        'Você recebe o Capítulo 1 em PDF, o Dossiê Ashford e passa a receber os avisos prioritários de lançamento.',
+    },
+    {
+      question: 'O livro já está à venda?',
+      answer:
+        'Ainda não. A landing está sendo usada para aquecer audiência, validar interesse e preparar a abertura da venda.',
+    },
+    {
+      question: 'Preciso pagar para receber o material?',
+      answer:
+        'Não. O material inicial é gratuito e serve para apresentar o universo e converter leitores qualificados.',
+    },
+  ];
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle');
@@ -73,7 +151,8 @@ export default function App() {
           <div className="hidden gap-6 text-sm font-medium tracking-wide md:flex">
             <a href="#universo" className="transition-colors hover:text-amber-500">O Universo</a>
             <a href="#personagens" className="transition-colors hover:text-amber-500">Personagens</a>
-            <a href="#arquivos" className="transition-colors hover:text-amber-500">Arquivos Confidenciais</a>
+            <a href="#dossie" className="transition-colors hover:text-amber-500">Dossiê VIP</a>
+            <a href="#faq" className="transition-colors hover:text-amber-500">FAQ</a>
           </div>
           <button
             type="button"
@@ -102,20 +181,58 @@ export default function App() {
             Alec Ashford, ex-sargento marcado pelas trincheiras, lidera os veteranos esquecidos pela coroa. Um império criminal nasce da fumaça de carvão.
           </p>
 
-          <button
-            type="button"
-            onClick={openLeadModal}
-            className="group flex items-center gap-3 rounded-sm bg-amber-800 px-8 py-4 font-bold uppercase tracking-widest text-white shadow-[0_0_20px_rgba(180,83,9,0.3)] transition-all hover:-translate-y-1 hover:bg-amber-700 hover:shadow-[0_0_30px_rgba(180,83,9,0.5)]"
-          >
-            <BookOpen size={20} />
-            Ler o Capítulo 1 Grátis
-            <ChevronRight size={18} className="transition-transform group-hover:translate-x-1" />
-          </button>
+          <div className="flex flex-col items-center gap-4 sm:flex-row">
+            <button
+              type="button"
+              onClick={openLeadModal}
+              className="group flex items-center gap-3 rounded-sm bg-amber-800 px-8 py-4 font-bold uppercase tracking-widest text-white shadow-[0_0_20px_rgba(180,83,9,0.3)] transition-all hover:-translate-y-1 hover:bg-amber-700 hover:shadow-[0_0_30px_rgba(180,83,9,0.5)]"
+            >
+              <BookOpen size={20} />
+              Ler o Capítulo 1 Grátis
+              <ChevronRight size={18} className="transition-transform group-hover:translate-x-1" />
+            </button>
+            <a
+              href="#dossie"
+              className="rounded-sm border border-neutral-700 px-8 py-4 font-bold uppercase tracking-widest text-neutral-200 transition-colors hover:border-amber-800 hover:text-white"
+            >
+              Ver o que vem no dossiê
+            </a>
+          </div>
           <p className="mt-4 flex items-center gap-2 text-xs text-neutral-500">
             <Shield size={12} /> Acesso imediato ao Dossiê Ashford.
           </p>
+
+          <div className="mt-12 grid w-full gap-4 md:grid-cols-3">
+            {dossierBenefits.map((benefit) => (
+              <div
+                key={benefit.title}
+                className="rounded-sm border border-neutral-800/80 bg-neutral-900/70 p-5 text-left shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
+              >
+                <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Lista VIP</span>
+                <h3 className="mt-3 font-serif text-xl font-bold text-white">{benefit.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-neutral-400">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </header>
+
+      <section className="border-b border-neutral-800 bg-neutral-950 px-6 py-8">
+        <div className="mx-auto flex max-w-5xl flex-col gap-4 rounded-sm border border-amber-900/30 bg-amber-950/10 p-6 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Oferta de entrada</p>
+            <h2 className="mt-2 font-serif text-2xl font-bold text-white">Uma landing para fisgar leitor qualificado antes do lançamento.</h2>
+          </div>
+          <button
+            type="button"
+            onClick={openLeadModal}
+            className="flex items-center justify-center gap-2 rounded-sm bg-amber-800 px-6 py-3 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-amber-700"
+          >
+            Receber o dossiê agora
+            <ChevronRight size={16} />
+          </button>
+        </div>
+      </section>
 
       <section id="universo" className="border-b border-neutral-800 bg-neutral-900 px-6 py-24">
         <div className="mx-auto grid max-w-4xl items-center gap-12 md:grid-cols-2">
@@ -157,6 +274,33 @@ export default function App() {
         </div>
       </section>
 
+      <section id="dossie" className="border-b border-neutral-800 bg-neutral-950 px-6 py-24">
+        <div className="mx-auto max-w-5xl">
+          <div className="max-w-2xl">
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Dossiê VIP</span>
+            <h2 className="mt-4 font-serif text-3xl font-bold text-white md:text-4xl">
+              Tudo o que o leitor precisa para entrar no universo antes da venda abrir.
+            </h2>
+            <p className="mt-4 leading-relaxed text-neutral-400">
+              Em vez de um blog, a página agora precisa vender a experiência. O dossiê funciona como o primeiro gancho: ele introduz o conflito, os personagens e a promessa do livro.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {dossierBenefits.map((benefit, index) => (
+              <article
+                key={benefit.title}
+                className="rounded-sm border border-neutral-800 bg-neutral-900 p-6 transition-colors hover:border-amber-900/50"
+              >
+                <span className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-500">Item 0{index + 1}</span>
+                <h3 className="mt-3 font-serif text-2xl font-bold text-white">{benefit.title}</h3>
+                <p className="mt-4 leading-relaxed text-neutral-400">{benefit.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="personagens" className="border-b border-neutral-800 bg-neutral-950 px-6 py-24">
         <div className="mx-auto max-w-5xl">
           <div className="mb-12 max-w-2xl">
@@ -164,26 +308,7 @@ export default function App() {
             <h2 className="mt-4 font-serif text-3xl font-bold text-white md:text-4xl">Veteranos moldados por ferro, lama e dívida.</h2>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
-            {[
-              {
-                name: 'Alec Ashford',
-                role: 'O estrategista',
-                description:
-                  'Ex-sargento condecorado que transformou disciplina militar em uma máquina criminosa precisa e silenciosa.',
-              },
-              {
-                name: 'Nora Vale',
-                role: 'A informante',
-                description:
-                  'Dona de um salão clandestino que reúne policiais, políticos e apostadores sob o mesmo teto esfumaçado.',
-              },
-              {
-                name: 'Hugh Mercer',
-                role: 'O cobrador',
-                description:
-                  'Sobreviveu às trincheiras e agora cobra cada dívida como se ainda estivesse atravessando terra de ninguém.',
-              },
-            ].map((character) => (
+            {characters.map((character) => (
               <article
                 key={character.name}
                 className="rounded-sm border border-neutral-800 bg-neutral-900 p-6 transition-colors hover:border-amber-900/50"
@@ -197,37 +322,99 @@ export default function App() {
         </div>
       </section>
 
-      <section id="arquivos" className="flex-grow bg-neutral-950 px-6 py-24">
-        <div className="mx-auto max-w-4xl">
-          <div className="mb-12 flex items-end justify-between border-b border-neutral-800 pb-4">
-            <h2 className="font-serif text-3xl font-bold text-white">Arquivos Confidenciais</h2>
-            <a href="#" className="flex items-center gap-1 text-sm font-bold uppercase tracking-wider text-amber-600 transition-colors hover:text-amber-500">
-              Ver todos <ChevronRight size={16} />
-            </a>
+      <section id="arquivos" className="border-b border-neutral-800 bg-neutral-900 px-6 py-24">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-12 max-w-2xl border-b border-neutral-800 pb-6">
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Arquivos Confidenciais</span>
+            <h2 className="mt-4 font-serif text-3xl font-bold text-white">Elementos de narrativa para vender o clima antes da compra.</h2>
+            <p className="mt-4 leading-relaxed text-neutral-400">
+              Esta seção deixa de ser um blog e vira uma vitrine de tensão. Cada bloco funciona como munição de marketing para reforçar o universo e aumentar a curiosidade.
+            </p>
           </div>
 
-          <div className="grid gap-8">
-            <article className="group flex cursor-pointer flex-col gap-6 border border-neutral-800 bg-neutral-900 p-6 transition-colors hover:border-amber-900/50 md:flex-row">
-              <div className="relative flex h-48 flex-col items-center justify-center overflow-hidden border border-neutral-800/50 bg-neutral-950 text-neutral-600 md:w-1/3">
-                <div className="absolute inset-0 bg-neutral-800 opacity-20 transition-opacity group-hover:opacity-40" />
-                <Skull size={48} className="mb-2 opacity-50" />
-                <span className="text-xs font-bold uppercase tracking-widest">Arquivo #001</span>
-              </div>
-              <div className="flex flex-col justify-center md:w-2/3">
-                <span className="mb-2 text-xs font-bold uppercase tracking-widest text-amber-700">Bastidores • Lore</span>
-                <h3 className="mb-3 font-serif text-2xl font-bold text-white transition-colors group-hover:text-amber-500">
-                  A Anatomia do Caos: Por que os heróis se tornaram os gângsteres mais perigosos?
-                </h3>
-                <p className="mb-4 line-clamp-2 text-neutral-400">
-                  Uma análise profunda sobre o pânico defensivo da polícia de Manchester ao lidar com veteranos treinados para matar, e como isso pavimentou a avenida perfeita para o crime organizado no pós-guerra.
-                </p>
-                <div className="mt-auto">
-                  <span className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-neutral-500 transition-colors group-hover:text-white">
-                    Ler Artigo Completo <ChevronRight size={14} />
-                  </span>
+          <div className="grid gap-6 md:grid-cols-3">
+            {intelligenceFiles.map((file) => (
+              <article
+                key={file.code}
+                className="group rounded-sm border border-neutral-800 bg-neutral-950 p-6 transition-colors hover:border-amber-900/50"
+              >
+                <div className="relative mb-6 flex h-36 items-center justify-center overflow-hidden border border-neutral-800/50 bg-neutral-900 text-neutral-600">
+                  <div className="absolute inset-0 bg-neutral-800 opacity-20 transition-opacity group-hover:opacity-40" />
+                  <div className="relative flex flex-col items-center">
+                    <Skull size={42} className="mb-2 opacity-50" />
+                    <span className="text-xs font-bold uppercase tracking-widest">{file.code}</span>
+                  </div>
                 </div>
-              </div>
-            </article>
+                <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">{file.tag}</span>
+                <h3 className="mt-3 font-serif text-2xl font-bold text-white">{file.title}</h3>
+                <p className="mt-4 leading-relaxed text-neutral-400">{file.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-neutral-800 bg-neutral-950 px-6 py-24">
+        <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-[1.1fr_0.9fr] md:items-start">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Prévia do Capítulo 1</span>
+            <h2 className="mt-4 font-serif text-3xl font-bold text-white md:text-4xl">Um gosto do conflito antes de abrir a venda.</h2>
+            <div className="mt-8 rounded-sm border border-neutral-800 bg-neutral-900 p-6 text-lg leading-relaxed text-neutral-300 shadow-inner">
+              <p>
+                “Ashford não acreditava mais em medalhas. Bronze não alimentava homem nenhum, não pagava aluguel e não enterrava amigo morto. Naquela noite, quando o metal derretido escorreu sobre a oficina, ninguém viu glória. Só viram uma nova promessa: se o Império não pagaria sua dívida, Manchester pagaria.”
+              </p>
+            </div>
+          </div>
+
+          <aside className="rounded-sm border border-amber-900/40 bg-amber-950/10 p-6">
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">CTA central</span>
+            <h3 className="mt-3 font-serif text-3xl font-bold text-white">Receba o dossiê e entre na lista antes da massa.</h3>
+            <p className="mt-4 leading-relaxed text-neutral-400">
+              Esta etapa não pede compra imediata. Ela pede curiosidade, cadastro e retenção até a abertura oficial das vendas.
+            </p>
+            <button
+              type="button"
+              onClick={openLeadModal}
+              className="mt-8 flex w-full items-center justify-center gap-2 rounded-sm bg-amber-800 px-5 py-4 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-amber-700"
+            >
+              Entrar para a lista VIP
+              <ChevronRight size={16} />
+            </button>
+            <p className="mt-4 text-xs text-neutral-500">Capítulo 1 + dossiê + aviso prioritário de lançamento.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="faq" className="flex-grow bg-neutral-950 px-6 py-24">
+        <div className="mx-auto max-w-4xl">
+          <div className="max-w-2xl">
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">FAQ</span>
+            <h2 className="mt-4 font-serif text-3xl font-bold text-white md:text-4xl">Perguntas que travam a conversão — respondidas.</h2>
+          </div>
+
+          <div className="mt-12 space-y-4">
+            {faqItems.map((item) => (
+              <article key={item.question} className="rounded-sm border border-neutral-800 bg-neutral-900 p-6">
+                <h3 className="font-serif text-2xl font-bold text-white">{item.question}</h3>
+                <p className="mt-3 leading-relaxed text-neutral-400">{item.answer}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-12 rounded-sm border border-amber-900/40 bg-gradient-to-r from-amber-950/20 to-neutral-900 p-8 text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Última chamada</p>
+            <h3 className="mt-4 font-serif text-3xl font-bold text-white md:text-4xl">Entre na lista antes que a guerra chegue às docas.</h3>
+            <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-neutral-400">
+              O objetivo da página agora é simples: transformar curiosidade em lead qualificado. O dossiê faz esse trabalho melhor do que um blog inteiro no começo.
+            </p>
+            <button
+              type="button"
+              onClick={openLeadModal}
+              className="mt-8 inline-flex items-center gap-2 rounded-sm bg-amber-800 px-8 py-4 font-bold uppercase tracking-widest text-white transition-colors hover:bg-amber-700"
+            >
+              Quero o Capítulo 1
+              <ChevronRight size={18} />
+            </button>
           </div>
         </div>
       </section>
