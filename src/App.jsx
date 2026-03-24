@@ -94,6 +94,14 @@ export default function App() {
   const [status, setStatus] = useState('idle');
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [activeTab, setActiveTab] = useState('historia');
+  const [prevTab, setPrevTab] = useState(null);
+  const tabOrder = ['historia', 'cenario', 'personagens'];
+
+  const changeTab = (tab) => {
+    if (tab === activeTab) return;
+    setPrevTab(activeTab);
+    setActiveTab(tab);
+  };
 
   const openLeadModal = () => {
     setIsModalOpen(true);
@@ -254,30 +262,36 @@ export default function App() {
 
             <div className="hidden md:flex items-center gap-4" role="tablist" aria-label="Detalhes do Livro Tabs">
               <button
+                id="tab-historia"
                 type="button"
                 role="tab"
+                aria-controls="panel-historia"
                 aria-selected={activeTab === 'historia'}
-                onClick={() => setActiveTab('historia')}
+                onClick={() => changeTab('historia')}
                 className={`tab-btn ${activeTab === 'historia' ? 'tab-active' : ''}`}
               >
                 A História
               </button>
 
               <button
+                id="tab-cenario"
                 type="button"
                 role="tab"
+                aria-controls="panel-cenario"
                 aria-selected={activeTab === 'cenario'}
-                onClick={() => setActiveTab('cenario')}
+                onClick={() => changeTab('cenario')}
                 className={`tab-btn ${activeTab === 'cenario' ? 'tab-active' : ''}`}
               >
                 O Cenário
               </button>
 
               <button
+                id="tab-personagens"
                 type="button"
                 role="tab"
+                aria-controls="panel-personagens"
                 aria-selected={activeTab === 'personagens'}
-                onClick={() => setActiveTab('personagens')}
+                onClick={() => changeTab('personagens')}
                 className={`tab-btn ${activeTab === 'personagens' ? 'tab-active' : ''}`}
               >
                 Personagens
@@ -285,17 +299,17 @@ export default function App() {
             </div>
 
             <div className="mt-6 rounded-sm border border-neutral-800 bg-neutral-950/5 p-6 text-neutral-300">
-              <div className={`tab-panel ${activeTab === 'historia' ? 'active' : ''}`} role="tabpanel">
+              <div id="panel-historia" aria-labelledby="tab-historia" className={`tab-panel ${activeTab === 'historia' ? (prevTab ? (tabOrder.indexOf(activeTab) > tabOrder.indexOf(prevTab) ? 'active slide-in-left' : 'active slide-in-right') : 'active') : ''}`} role="tabpanel">
                 <h3 className="font-serif text-xl font-bold text-white">A História</h3>
                 <p className="mt-3 text-sm text-neutral-400">A narrativa acompanha o ressurgimento de homens marcados pela guerra que transformam fúria e honra em um código de sobrevivência. Conspirações crescem nas docas; pactos sangrentos selam territórios. Alec e Audrey aparecem no centro desse jogo.</p>
               </div>
 
-              <div className={`tab-panel ${activeTab === 'cenario' ? 'active' : ''}`} role="tabpanel">
+              <div id="panel-cenario" aria-labelledby="tab-cenario" className={`tab-panel ${activeTab === 'cenario' ? (prevTab ? (tabOrder.indexOf(activeTab) > tabOrder.indexOf(prevTab) ? 'active slide-in-left' : 'active slide-in-right') : 'active') : ''}`} role="tabpanel">
                 <h3 className="font-serif text-xl font-bold text-white">O Cenário</h3>
                 <p className="mt-3 text-sm text-neutral-400">Manchester é ferro e carvão. Fumaça envenena o céu; túneis de carvão acumulam segredos e pistas. Fábricas, trilhos e bares formam o cenário onde a lei e a ambição se cruzam.</p>
               </div>
 
-              <div className={`tab-panel ${activeTab === 'personagens' ? 'active' : ''}`} role="tabpanel">
+              <div id="panel-personagens" aria-labelledby="tab-personagens" className={`tab-panel ${activeTab === 'personagens' ? (prevTab ? (tabOrder.indexOf(activeTab) > tabOrder.indexOf(prevTab) ? 'active slide-in-left' : 'active slide-in-right') : 'active') : ''}`} role="tabpanel">
                 <h3 className="font-serif text-xl font-bold text-white">Personagens</h3>
                 <p className="mt-3 text-sm text-neutral-400">Alec: veterano com disciplina letal. Audrey: mente fria e ambiciosa. Ao redor deles, informantes, cobradores e agentes jogam suas peças. Cada aliado pode virar inimigo.</p>
               </div>
