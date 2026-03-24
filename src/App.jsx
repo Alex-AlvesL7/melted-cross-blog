@@ -439,6 +439,41 @@ export default function App() {
         </div>
       </section>
 
+      <section id="autor" className="border-t border-neutral-900 bg-neutral-950 px-6 py-20">
+        <div className="mx-auto flex max-w-5xl items-center gap-6">
+          <div className="shrink-0">
+            <div className="h-32 w-32 overflow-hidden rounded-full border border-neutral-800">
+              <img
+                src="/assets/author.jpg"
+                alt="Alex Alves"
+                className="h-full w-full object-cover filter grayscale contrast-90"
+              />
+            </div>
+          </div>
+
+          <div className="min-w-0">
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">O Autor</span>
+            <h3 className="mt-2 font-serif text-2xl font-bold text-white">Alex Alves — arquiteto de mundos</h3>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-400">
+              Alex Alves constrói universos onde a Revolução Industrial respira nas sombras. Seus textos exploram
+              fábricas, trilhos e túneis — trazendo à tona as forças que moldaram cidades e homens. Histórias com
+              densidade histórica e tensão moderna.
+            </p>
+
+            <div className="mt-4 flex items-center gap-4">
+              <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-amber-600">
+                <i className="fa-brands fa-instagram text-lg" aria-hidden="true"></i>
+                <span className="sr-only">Instagram</span>
+              </a>
+              <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-amber-600">
+                <i className="fa-brands fa-tiktok text-lg" aria-hidden="true"></i>
+                <span className="sr-only">TikTok</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <footer className="border-t border-neutral-900 bg-neutral-950 py-8 text-center text-sm text-neutral-600">
         <div className="mb-2 flex items-center justify-center gap-2">
           <Crosshair size={16} className="text-amber-800" />
