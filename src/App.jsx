@@ -223,6 +223,21 @@ export default function App() {
         </div>
       </header>
 
+      <div className="vip-banner mx-auto w-full px-6">
+        <div className="mx-auto max-w-5xl flex items-center justify-between gap-4 py-2">
+          <div className="text-sm text-neutral-300">DESBLOQUEIE O DOSSIÊ MANCHESTER: Ganhe o mapa dos túneis e o 1º capítulo.</div>
+          <div>
+            <button
+              type="button"
+              onClick={openLeadModal}
+              className="vip-btn text-sm"
+            >
+              Abrir Dossiê
+            </button>
+          </div>
+        </div>
+      </div>
+
       <section className="border-b border-neutral-800 bg-neutral-950 px-6 py-8">
         <div className="mx-auto flex max-w-5xl flex-col gap-4 rounded-sm border border-amber-900/30 bg-amber-950/10 p-6 md:flex-row md:items-center md:justify-between">
           <div>
