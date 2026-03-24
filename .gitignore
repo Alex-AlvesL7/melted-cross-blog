@@ -11,3 +11,9 @@ Thumbs.db
 *.exe
 *.zip
 *.epub
+# Ignore large artifacts
+/livro pronto/
+*.exe
+*.zip
+*.epub
+*.pdf
