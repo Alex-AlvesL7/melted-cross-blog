@@ -6,3 +6,8 @@ dist/
 .vscode/*.log
 .DS_Store
 Thumbs.db
+# Ignore large artifacts
+/livro pronto/
+*.exe
+*.zip
+*.epub
