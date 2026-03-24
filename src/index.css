@@ -133,3 +133,43 @@ section .rounded-sm.border h3,
 section .rounded-sm.border h2 {
   color: var(--color-text);
 }
+
+/* Tabs styling */
+.tab-btn {
+  color: var(--color-text);
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+.tab-btn:focus {
+  outline: none;
+}
+.tab-active {
+  color: var(--color-accent) !important;
+  border-bottom-color: var(--color-accent) !important;
+}
+
+/* Tab panel transitions (fade + slide) */
+.tab-panel {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 260ms cubic-bezier(.2,.9,.2,1), transform 260ms cubic-bezier(.2,.9,.2,1);
+  pointer-events: none;
+}
+.tab-panel.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Responsive: make select visible on small screens */
+.tab-select {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--color-text);
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+}

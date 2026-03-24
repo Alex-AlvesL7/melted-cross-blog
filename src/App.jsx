@@ -237,62 +237,69 @@ export default function App() {
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Detalhes do Livro</span>
           <h2 className="mt-3 font-serif text-3xl font-bold text-white md:text-4xl">A profundidade do mundo em três abas</h2>
 
-          <div className="mt-6 flex items-center gap-4" role="tablist" aria-label="Detalhes do Livro Tabs">
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === 'historia'}
-              onClick={() => setActiveTab('historia')}
-              className="px-3 py-2 text-sm font-medium focus:outline-none"
-              style={activeTab === 'historia' ? { color: 'var(--color-accent)', borderBottom: '2px solid var(--color-accent)' } : { color: 'var(--color-text)' }}
-            >
-              A História
-            </button>
+          <div className="mt-6">
+            <div className="md:hidden">
+              <label htmlFor="detalhes-select" className="sr-only">Selecionar detalhe</label>
+              <select
+                id="detalhes-select"
+                className="tab-select"
+                value={activeTab}
+                onChange={(e) => setActiveTab(e.target.value)}
+              >
+                <option value="historia">A História</option>
+                <option value="cenario">O Cenário</option>
+                <option value="personagens">Personagens</option>
+              </select>
+            </div>
 
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === 'cenario'}
-              onClick={() => setActiveTab('cenario')}
-              className="px-3 py-2 text-sm font-medium focus:outline-none"
-              style={activeTab === 'cenario' ? { color: 'var(--color-accent)', borderBottom: '2px solid var(--color-accent)' } : { color: 'var(--color-text)' }}
-            >
-              O Cenário
-            </button>
+            <div className="hidden md:flex items-center gap-4" role="tablist" aria-label="Detalhes do Livro Tabs">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeTab === 'historia'}
+                onClick={() => setActiveTab('historia')}
+                className={`tab-btn ${activeTab === 'historia' ? 'tab-active' : ''}`}
+              >
+                A História
+              </button>
 
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === 'personagens'}
-              onClick={() => setActiveTab('personagens')}
-              className="px-3 py-2 text-sm font-medium focus:outline-none"
-              style={activeTab === 'personagens' ? { color: 'var(--color-accent)', borderBottom: '2px solid var(--color-accent)' } : { color: 'var(--color-text)' }}
-            >
-              Personagens
-            </button>
-          </div>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeTab === 'cenario'}
+                onClick={() => setActiveTab('cenario')}
+                className={`tab-btn ${activeTab === 'cenario' ? 'tab-active' : ''}`}
+              >
+                O Cenário
+              </button>
 
-          <div className="mt-6 rounded-sm border border-neutral-800 bg-neutral-950/5 p-6 text-neutral-300">
-            {activeTab === 'historia' && (
-              <div role="tabpanel">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeTab === 'personagens'}
+                onClick={() => setActiveTab('personagens')}
+                className={`tab-btn ${activeTab === 'personagens' ? 'tab-active' : ''}`}
+              >
+                Personagens
+              </button>
+            </div>
+
+            <div className="mt-6 rounded-sm border border-neutral-800 bg-neutral-950/5 p-6 text-neutral-300">
+              <div className={`tab-panel ${activeTab === 'historia' ? 'active' : ''}`} role="tabpanel">
                 <h3 className="font-serif text-xl font-bold text-white">A História</h3>
                 <p className="mt-3 text-sm text-neutral-400">A narrativa acompanha o ressurgimento de homens marcados pela guerra que transformam fúria e honra em um código de sobrevivência. Conspirações crescem nas docas; pactos sangrentos selam territórios. Alec e Audrey aparecem no centro desse jogo.</p>
               </div>
-            )}
 
-            {activeTab === 'cenario' && (
-              <div role="tabpanel">
+              <div className={`tab-panel ${activeTab === 'cenario' ? 'active' : ''}`} role="tabpanel">
                 <h3 className="font-serif text-xl font-bold text-white">O Cenário</h3>
                 <p className="mt-3 text-sm text-neutral-400">Manchester é ferro e carvão. Fumaça envenena o céu; túneis de carvão acumulam segredos e pistas. Fábricas, trilhos e bares formam o cenário onde a lei e a ambição se cruzam.</p>
               </div>
-            )}
 
-            {activeTab === 'personagens' && (
-              <div role="tabpanel">
+              <div className={`tab-panel ${activeTab === 'personagens' ? 'active' : ''}`} role="tabpanel">
                 <h3 className="font-serif text-xl font-bold text-white">Personagens</h3>
                 <p className="mt-3 text-sm text-neutral-400">Alec: veterano com disciplina letal. Audrey: mente fria e ambiciosa. Ao redor deles, informantes, cobradores e agentes jogam suas peças. Cada aliado pode virar inimigo.</p>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </section>
