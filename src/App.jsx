@@ -169,16 +169,13 @@ export default function App() {
 
         <div className="relative z-10 flex max-w-3xl flex-col items-center">
           <span className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-amber-600 md:text-sm">
-            Manchester, 1919
+            Manchester, 1920
           </span>
-          <h1 className="mb-6 font-serif text-5xl leading-tight font-bold text-white md:text-7xl">
-            O fogo derrete medalhas. <br />
-            <span className="bg-gradient-to-r from-neutral-400 via-neutral-200 to-amber-700 bg-clip-text text-transparent">
-              O sangue forja o caos.
-            </span>
+          <h1 className="mb-6 font-serif text-4xl leading-tight font-bold text-white md:text-5xl">
+            Manchester, 1920. Onde o carvão mancha a alma e o sangue sela pactos.
           </h1>
           <p className="mb-10 max-w-2xl text-lg leading-relaxed text-neutral-400 md:text-xl">
-            Alec Ashford, ex-sargento marcado pelas trincheiras, lidera os veteranos esquecidos pela coroa. Um império criminal nasce da fumaça de carvão.
+            Entre as trincheiras de ferro da fumaça e os segredos dos túneis, Alec e Audrey jogam um jogo de lealdade e traição. Descubra o thriller noir que revela o Exército Fantasma de Manchester.
           </p>
 
           <div className="flex flex-col items-center gap-4 sm:flex-row">
@@ -188,7 +185,7 @@ export default function App() {
               className="group flex items-center gap-3 rounded-sm bg-amber-800 px-8 py-4 font-bold uppercase tracking-widest text-white shadow-[0_0_20px_rgba(180,83,9,0.3)] transition-all hover:-translate-y-1 hover:bg-amber-700 hover:shadow-[0_0_30px_rgba(180,83,9,0.5)]"
             >
               <BookOpen size={20} />
-              Ler o Capítulo 1 Grátis
+              Ler o Primeiro Capítulo
               <ChevronRight size={18} className="transition-transform group-hover:translate-x-1" />
             </button>
             <a
