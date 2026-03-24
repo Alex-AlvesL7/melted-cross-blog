@@ -274,6 +274,26 @@ export default function App() {
         </div>
       </section>
 
+      <section id="sobre" className="border-b border-neutral-800 bg-neutral-900 px-6 py-20">
+        <div className="mx-auto max-w-4xl">
+          <div className="mb-6 max-w-2xl">
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Sobre o Livro</span>
+            <h2 className="mt-4 font-serif text-3xl font-bold text-white md:text-4xl">Noir. Industrial. Sem perdão.</h2>
+          </div>
+
+          <div className="rounded-sm border border-neutral-800 bg-neutral-950/5 p-6 text-neutral-300">
+            <p className="mb-3">Manchester, 1920. A chuva nunca para.</p>
+            <p className="mb-3">A cidade respira carvão e aço. Túneis antigos engolem segredos. Segredos enterrados no carvão.</p>
+            <p className="mb-3">Alec veio da guerra. Ordem tatuada no corpo. Olhos de soldado. Mãos que sabem dar e tirar vidas.</p>
+            <p className="mb-3">Audrey veio do cálculo. Ambição precisa. Sorriso frio. Planos desenhados em papel quadriculado.</p>
+            <p className="mb-3">Ele carrega honra e ordens. Ela carrega ambição e mapas de interesse. Colidem. Tudo vira jogo.</p>
+            <p className="mb-3">Gangues nas esquinas. Agentes nas fábricas. Espionagem nos becos. Traição nos trilhos.</p>
+            <p className="mb-3">O passado militar de Alec bate com a ambição calculista de Audrey. Honra versus poder. Sangue contra estratégia.</p>
+            <p className="mt-4">Sinta a chuva. Sinta o peso do carvão. Cada túnel guarda uma escolha. Cada escolha define uma sentença.</p>
+          </div>
+        </div>
+      </section>
+
       <section id="dossie" className="border-b border-neutral-800 bg-neutral-950 px-6 py-24">
         <div className="mx-auto max-w-5xl">
           <div className="max-w-2xl">
