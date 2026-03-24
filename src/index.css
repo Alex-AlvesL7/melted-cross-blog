@@ -176,29 +176,46 @@ section .rounded-sm.border h2 {
 
 /* VIP banner */
 .vip-banner {
-  background: linear-gradient(180deg, rgba(15,15,15,0.9), rgba(25,25,25,0.9));
-  background-blend-mode: overlay;
-  border-top: 1px solid rgba(255,255,255,0.02);
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.45);
-}
-.vip-banner .vip-btn {
-  background: transparent;
-  border: 1px solid rgba(205,127,50,0.18);
-  color: var(--color-accent);
-  padding: 0.35rem 0.7rem;
-  border-radius: 6px;
-  font-weight: 700;
-  transition: background 0.12s ease, transform 0.12s ease;
-}
-.vip-banner .vip-btn:hover {
-  background: rgba(205,127,50,0.08);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, rgba(25, 25, 25, 0.95) 0%, rgba(20, 20, 20, 0.98) 100%);
+  position: relative;
+  overflow: hidden;
 }
 
-@media (max-width: 640px) {
-  .vip-banner .max-w-5xl { flex-direction: column; gap: 0.5rem; align-items: center; }
-  .vip-banner .vip-btn { width: 100%; text-align: center; }
+.vip-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(205, 127, 50, 0.03) 2px, rgba(205, 127, 50, 0.03) 4px),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(205, 127, 50, 0.02) 2px, rgba(205, 127, 50, 0.02) 4px);
+  pointer-events: none;
+}
+
+.vip-banner > * {
+  position: relative;
+  z-index: 1;
+}
+
+.vip-btn {
+  background: transparent;
+  border: 1px solid rgba(205, 127, 50, 0.25);
+  color: var(--color-accent);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  transition: all 0.18s ease;
+  cursor: pointer;
+}
+
+.vip-btn:hover {
+  background: rgba(205, 127, 50, 0.12);
+  border-color: rgba(205, 127, 50, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(205, 127, 50, 0.1);
+}
+
+.vip-btn:focus {
+  outline: none;
+  background: rgba(205, 127, 50, 0.12);
 }
 
 @keyframes slideInLeft {
