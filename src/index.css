@@ -111,3 +111,25 @@ button:hover, .btn:hover {
     transform: scale(1);
   }
 }
+
+/* Glassmorphism sutble cards for dark background */
+section .rounded-sm.border {
+  background: rgba(255, 255, 255, 0.05) !important;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(205, 127, 50, 0.12) !important; /* bronze with low opacity */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255,255,255,0.02) inset;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+section .rounded-sm.border:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255,255,255,0.03) inset;
+}
+
+/* Make sure small CTA/asides keep readable contrast */
+section .rounded-sm.border p,
+section .rounded-sm.border h3,
+section .rounded-sm.border h2 {
+  color: var(--color-text);
+}
