@@ -11,6 +11,8 @@ import {
 import { isSupabaseConfigured, supabase } from './lib/supabase';
 
 export default function App() {
+  const purchaseLink = 'https://loja.infinitepay.io/l7fitness/dwn6535-livro---the-melted-cross';
+
   const characters = [
     {
       name: 'Alec Ashford',
@@ -276,14 +278,20 @@ export default function App() {
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Oferta de entrada</p>
             <h2 className="mt-2 font-serif text-2xl font-bold text-white">Desvende os segredos de Manchester antes que a cidade queime.</h2>
           </div>
-          <button
-            type="button"
-            onClick={openLeadModal}
-            className="flex items-center justify-center gap-2 rounded-sm bg-amber-800 px-6 py-3 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-amber-700"
+          <a
+            href={purchaseLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center justify-center rounded-sm bg-amber-800 px-6 py-3 text-center text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-amber-700"
           >
-            Receber o dossiê agora
-            <ChevronRight size={16} />
-          </button>
+            <span className="flex items-center justify-center gap-2">
+              Comprar livro físico
+              <ChevronRight size={16} />
+            </span>
+            <span className="mt-1 text-[11px] font-medium tracking-[0.2em] text-amber-100/90">
+              Edição de colecionador • R$ 29,90
+            </span>
+          </a>
         </div>
       </section>
 
