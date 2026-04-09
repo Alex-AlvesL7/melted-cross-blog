@@ -173,52 +173,86 @@ export default function App() {
         </div>
       </nav>
 
-      <header className="relative flex flex-col items-center justify-center overflow-hidden border-b border-neutral-800 px-6 py-32 text-center">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-800/20 via-neutral-950/80 to-neutral-950" />
+      <header className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden border-b border-neutral-800 px-6 py-20 lg:py-32">
+        {/* Background Image Wrapper */}
+        <div className="absolute inset-0 z-0 bg-neutral-950">
+          <img 
+            src="/hero-bg.png" 
+            alt="Manchester 1920" 
+            className="h-full w-full object-cover opacity-60 grayscale-[50%]" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/90 via-neutral-950/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent" />
+        </div>
 
-        <div className="relative z-10 flex max-w-3xl flex-col items-center">
-          <span className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-amber-600 md:text-sm">
-            Manchester, 1920
-          </span>
-          <h1 className="mb-6 font-serif text-4xl leading-tight font-bold text-white md:text-5xl">
-            Manchester, 1920. Onde o carvão mancha a alma e o sangue sela pactos.
-          </h1>
-          <p className="mb-10 max-w-2xl text-lg leading-relaxed text-neutral-400 md:text-xl">
-            Entre as trincheiras de ferro da fumaça e os segredos dos túneis, Alec e Audrey jogam um jogo de lealdade e traição. Descubra o thriller noir que revela o Exército Fantasma de Manchester.
-          </p>
+        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-16 lg:flex-row lg:items-start lg:justify-between">
+          <div className="flex max-w-2xl flex-col items-center text-center lg:items-start lg:text-left">
+            <span className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-amber-600 md:text-sm">
+              Manchester, 1920
+            </span>
+            <h1 className="mb-6 font-serif text-4xl leading-tight font-bold text-white md:text-5xl lg:text-6xl text-shadow-xl">
+              Onde o carvão mancha a alma e o sangue sela pactos.
+            </h1>
+            <p className="mb-10 max-w-xl text-lg leading-relaxed text-neutral-300 md:text-xl drop-shadow-md">
+              Entre as trincheiras de ferro da fumaça e os segredos dos túneis, Alec e Audrey jogam um jogo de lealdade e traição. Descubra o thriller noir que revela o Exército Fantasma de Manchester.
+            </p>
 
-          <div className="flex flex-col items-center gap-4 sm:flex-row">
-            <button
-              type="button"
-              onClick={openLeadModal}
-              className="group flex items-center gap-3 rounded-sm bg-amber-800 px-8 py-4 font-bold uppercase tracking-widest text-white shadow-[0_0_20px_rgba(180,83,9,0.3)] transition-all hover:-translate-y-1 hover:bg-amber-700 hover:shadow-[0_0_30px_rgba(180,83,9,0.5)]"
-            >
-              <BookOpen size={20} />
-              Ler o Primeiro Capítulo
-              <ChevronRight size={18} className="transition-transform group-hover:translate-x-1" />
-            </button>
-            <a
-              href="#dossie"
-              className="rounded-sm border border-neutral-700 px-8 py-4 font-bold uppercase tracking-widest text-neutral-200 transition-colors hover:border-amber-800 hover:text-white"
-            >
-              Ver o que vem no dossiê
-            </a>
-          </div>
-          <p className="mt-4 flex items-center gap-2 text-xs text-neutral-500">
-            <Shield size={12} /> Acesso imediato ao Dossiê Ashford.
-          </p>
-
-          <div className="mt-12 grid w-full gap-4 md:grid-cols-3">
-            {dossierBenefits.map((benefit) => (
-              <div
-                key={benefit.title}
-                className="rounded-sm border border-neutral-800/80 bg-neutral-900/70 p-5 text-left shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
+            <div className="flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
+              <button
+                type="button"
+                onClick={openLeadModal}
+                className="group flex items-center gap-3 rounded-sm bg-amber-800 px-8 py-4 font-bold uppercase tracking-widest text-white shadow-[0_0_20px_rgba(180,83,9,0.3)] transition-all hover:-translate-y-1 hover:bg-amber-700 hover:shadow-[0_0_30px_rgba(180,83,9,0.5)]"
               >
-                <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Lista VIP</span>
-                <h3 className="mt-3 font-serif text-xl font-bold text-white">{benefit.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-neutral-400">{benefit.description}</p>
+                <BookOpen size={20} />
+                Ler o Primeiro Capítulo
+                <ChevronRight size={18} className="transition-transform group-hover:translate-x-1" />
+              </button>
+              <a
+                href="#dossie"
+                className="rounded-sm border border-neutral-700 bg-neutral-950/50 backdrop-blur-sm px-8 py-4 font-bold uppercase tracking-widest text-neutral-200 transition-colors hover:border-amber-800 hover:text-white"
+              >
+                Ver o que vem no dossiê
+              </a>
+            </div>
+            <p className="mt-4 flex items-center justify-center lg:justify-start gap-2 text-xs text-neutral-400 drop-shadow">
+              <Shield size={12} className="text-amber-600" /> Acesso imediato ao Dossiê Ashford.
+            </p>
+
+            <div className="mt-12 grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {dossierBenefits.map((benefit) => (
+                <div
+                  key={benefit.title}
+                  className="rounded-sm border border-neutral-800/80 bg-neutral-950/70 p-5 text-left shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all hover:-translate-y-1 hover:border-amber-900/50"
+                >
+                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Lista VIP</span>
+                  <h3 className="mt-3 font-serif text-lg font-bold text-white">{benefit.title}</h3>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative flex w-full max-w-sm flex-col items-center justify-center lg:w-1/3 pt-8 lg:pt-0">
+            <div className="group relative w-full pt-[150%] sm:pt-[140%] perspective-1000">
+              <div className="absolute inset-0 rotate-y-[-5deg] rotate-x-[5deg] transform transition-transform duration-700 group-hover:rotate-y-0 group-hover:rotate-x-0">
+                <div className="absolute -inset-4 rounded-lg bg-amber-900/20 blur-2xl opacity-50 transition duration-1000 group-hover:opacity-75" />
+                
+                {/* Fallback frame se a imagem não carregar */}
+                <div className="absolute inset-0 z-0 flex flex-col items-center justify-center rounded-sm border border-neutral-800 bg-neutral-900/80 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-sm">
+                  <BookOpen size={48} className="text-neutral-800 mb-4" />
+                  <p className="px-6 text-center text-sm font-medium text-neutral-600">
+                    Sua capa aparecerá aqui.<br/>Salve como <b>capa-livro.png</b> na pasta public.
+                  </p>
+                </div>
+                
+                {/* Imagem real da capa (sobrepõe o fallback) */}
+                <img 
+                  src="/capa-livro.jpg" 
+                  alt="Capa do livro" 
+                  className="absolute inset-0 z-10 h-full w-full rounded-sm object-cover shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </header>
@@ -240,7 +274,7 @@ export default function App() {
         <div className="mx-auto flex max-w-5xl flex-col gap-4 rounded-sm border border-amber-900/30 bg-amber-950/10 p-6 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Oferta de entrada</p>
-            <h2 className="mt-2 font-serif text-2xl font-bold text-white">Uma landing para fisgar leitor qualificado antes do lançamento.</h2>
+            <h2 className="mt-2 font-serif text-2xl font-bold text-white">Desvende os segredos de Manchester antes que a cidade queime.</h2>
           </div>
           <button
             type="button"
@@ -399,7 +433,7 @@ export default function App() {
               Tudo o que o leitor precisa para entrar no universo antes da venda abrir.
             </h2>
             <p className="mt-4 leading-relaxed text-neutral-400">
-              Em vez de um blog, a página agora precisa vender a experiência. O dossiê funciona como o primeiro gancho: ele introduz o conflito, os personagens e a promessa do livro.
+              O dossiê é sua porta de entrada. Um pacote de inteligência reunido para que você entenda as regras do jogo, conheça os jogadores e mergulhe no submundo industrial antes que a poeira assente.
             </p>
           </div>
 
@@ -443,9 +477,9 @@ export default function App() {
         <div className="mx-auto max-w-5xl">
           <div className="mb-12 max-w-2xl border-b border-neutral-800 pb-6">
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Arquivos Confidenciais</span>
-            <h2 className="mt-4 font-serif text-3xl font-bold text-white">Elementos de narrativa para vender o clima antes da compra.</h2>
+            <h2 className="mt-4 font-serif text-3xl font-bold text-white">A verdade enterrada sob a fuligem.</h2>
             <p className="mt-4 leading-relaxed text-neutral-400">
-              Esta seção deixa de ser um blog e vira uma vitrine de tensão. Cada bloco funciona como munição de marketing para reforçar o universo e aumentar a curiosidade.
+              Vasculhe os registros da polícia e as anotações do submundo. Cada relatório vazado é uma peça para entender a engrenagem que move as facções, a ganância e a pólvora de Manchester.
             </p>
           </div>
 
@@ -475,7 +509,7 @@ export default function App() {
         <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-[1.1fr_0.9fr] md:items-start">
           <div>
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Prévia do Capítulo 1</span>
-            <h2 className="mt-4 font-serif text-3xl font-bold text-white md:text-4xl">Um gosto do conflito antes de abrir a venda.</h2>
+            <h2 className="mt-4 font-serif text-3xl font-bold text-white md:text-4xl">Um gosto de fumaça, engano e chumbo.</h2>
             <div className="mt-8 rounded-sm border border-neutral-800 bg-neutral-900 p-6 text-lg leading-relaxed text-neutral-300 shadow-inner">
               <p>
                 “Ashford não acreditava mais em medalhas. Bronze não alimentava homem nenhum, não pagava aluguel e não enterrava amigo morto. Naquela noite, quando o metal derretido escorreu sobre a oficina, ninguém viu glória. Só viram uma nova promessa: se o Império não pagaria sua dívida, Manchester pagaria.”
@@ -487,7 +521,7 @@ export default function App() {
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">CTA central</span>
             <h3 className="mt-3 font-serif text-3xl font-bold text-white">Receba o dossiê e entre na lista antes da massa.</h3>
             <p className="mt-4 leading-relaxed text-neutral-400">
-              Esta etapa não pede compra imediata. Ela pede curiosidade, cadastro e retenção até a abertura oficial das vendas.
+              O lançamento oficial se aproxima. Garanta seu passe livre para as ruelas escuras e receba o primeiro capítulo nos seus termos. Não espere a guerra ser declarada para escolher um lado.
             </p>
             <button
               type="button"
@@ -506,7 +540,7 @@ export default function App() {
         <div className="mx-auto max-w-4xl">
           <div className="max-w-2xl">
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">FAQ</span>
-            <h2 className="mt-4 font-serif text-3xl font-bold text-white md:text-4xl">Perguntas que travam a conversão — respondidas.</h2>
+            <h2 className="mt-4 font-serif text-3xl font-bold text-white md:text-4xl">O que você precisa saber antes de descer aos túneis.</h2>
           </div>
 
           <div className="mt-12 space-y-4">
@@ -522,7 +556,7 @@ export default function App() {
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-700">Última chamada</p>
             <h3 className="mt-4 font-serif text-3xl font-bold text-white md:text-4xl">Entre na lista antes que a guerra chegue às docas.</h3>
             <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-neutral-400">
-              O objetivo da página agora é simples: transformar curiosidade em lead qualificado. O dossiê faz esse trabalho melhor do que um blog inteiro no começo.
+              O império já esqueceu quem sangrou por ele. A Melted Cross está prestes a cobrar sua dívida com juros e lâminas afiadas. Junte-se à lista secreta e receba seu Dossiê de Iniciado para estar à frente quando a história começar.
             </p>
             <button
               type="button"
